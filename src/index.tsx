@@ -30,6 +30,7 @@ export interface StarRatingProps {
 	className?: string;
 }
 
+// Star rating component with keyboard and mouse support
 export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
 	(
 		{
@@ -53,9 +54,7 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
 		const isControlled = value !== undefined;
 		const [internalRating, setInternalRating] = useState(defaultValue);
 		const [hoverRating, setHoverRating] = useState(0);
-		const [keyboardFocusValue, setKeyboardFocusValue] = useState<number | null>(
-			null,
-		);
+		const [keyboardFocusValue, setKeyboardFocusValue] = useState<number | null>(null);
 		const [usingKeyboard, setUsingKeyboard] = useState(false);
 
 		const isInteractive = !disabled && !readOnly;
@@ -72,51 +71,37 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
 		useEffect(() => {
 			const handleKeyDown = () => setUsingKeyboard(true);
 			const handleMouseDown = () => setUsingKeyboard(false);
-
 			if (isInteractive) {
 				document.addEventListener("keydown", handleKeyDown);
 				document.addEventListener("mousedown", handleMouseDown);
 			}
-
 			return () => {
 				document.removeEventListener("keydown", handleKeyDown);
 				document.removeEventListener("mousedown", handleMouseDown);
 			};
 		}, [isInteractive]);
 
-		const calculateRating = (
-			event: React.MouseEvent<HTMLDivElement>,
-			index: number,
-		): number => {
+		function calculateRating(event: React.MouseEvent<HTMLDivElement>, index: number): number {
 			if (!isInteractive) return rating;
-
-			const targetElement = event.currentTarget;
-			const boundingRect = targetElement.getBoundingClientRect();
-			const offsetX = event.clientX - boundingRect.left;
-			const percentage = offsetX / boundingRect.width;
-			const fraction = Math.ceil(percentage / precision) * precision;
+			const { left, width } = event.currentTarget.getBoundingClientRect();
+			const percent = (event.clientX - left) / width;
+			const fraction = Math.ceil(percent / precision) * precision;
 			const value = index + Math.min(fraction, 1);
 			return Math.min(Math.max(value, 0), maxRating);
-		};
+		}
 
-		const updateRating = (newValue: number) => {
+		function updateRating(newValue: number) {
 			if (isControlled) {
 				onChange?.(newValue);
 			} else {
 				setInternalRating(newValue);
 				onChange?.(newValue);
 			}
-		};
+		}
 
-		const handleClick = (
-			event: React.MouseEvent<HTMLDivElement>,
-			index: number,
-		) => {
+		function handleClick(event: React.MouseEvent<HTMLDivElement>, index: number) {
 			if (!isInteractive) return;
-
-			const calculatedValue = calculateRating(event, index);
-			const newValue = roundToPrecision(calculatedValue, precision);
-
+			const newValue = roundToPrecision(calculateRating(event, index), precision);
 			if (newValue === rating) {
 				setHoverRating(0);
 				setKeyboardFocusValue(0);
@@ -126,86 +111,66 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
 				setHoverRating(0);
 				setKeyboardFocusValue(newValue);
 			}
-		};
+		}
 
-		const handleMouseEnter = (
-			event: React.MouseEvent<HTMLDivElement>,
-			index: number,
-		) => {
+		function handleMouseEnter(event: React.MouseEvent<HTMLDivElement>, index: number) {
 			if (!isInteractive) return;
 			const newValue = calculateRating(event, index);
 			setHoverRating(newValue);
 			onHoverChange?.(newValue);
-		};
+		}
 
-		const handleMouseMove = (
-			event: React.MouseEvent<HTMLDivElement>,
-			index: number,
-		) => {
+		function handleMouseMove(event: React.MouseEvent<HTMLDivElement>, index: number) {
 			if (!isInteractive) return;
 			const newValue = calculateRating(event, index);
 			setHoverRating(newValue);
 			onHoverChange?.(newValue);
-		};
+		}
 
-		const handleMouseLeave = () => {
+		function handleMouseLeave() {
 			if (!isInteractive) return;
 			setHoverRating(0);
 			onHoverChange?.(0);
-		};
+		}
 
-		const handleFocus = () => {
+		function handleFocus() {
 			if (!isInteractive) return;
-
-			if (usingKeyboard) {
-				if (keyboardFocusValue === null) {
-					setKeyboardFocusValue(rating);
-				}
+			if (usingKeyboard && keyboardFocusValue === null) {
+				setKeyboardFocusValue(rating);
 			}
-		};
+		}
 
-		const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
+		function handleBlur(event: React.FocusEvent<HTMLDivElement>) {
 			if (!isInteractive) return;
 			setKeyboardFocusValue(null);
 			setHoverRating(0);
 			onBlur?.(event);
-		};
+		}
 
-		const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+		function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
 			if (!isInteractive) return;
-
 			let newValue: number | undefined;
 			const currentValue = keyboardFocusValue ?? rating;
-
 			switch (event.key) {
 				case "ArrowRight":
-				case "ArrowUp": {
+				case "ArrowUp":
 					newValue = Math.min(maxRating, currentValue + precision);
 					break;
-				}
 				case "ArrowLeft":
-				case "ArrowDown": {
-					newValue = Math.max(
-						0,
-						currentValue > 0 ? currentValue - precision : 0,
-					);
+				case "ArrowDown":
+					newValue = Math.max(0, currentValue > 0 ? currentValue - precision : 0);
 					break;
-				}
-				case "Home": {
+				case "Home":
 					newValue = 0;
 					break;
-				}
-				case "End": {
+				case "End":
 					newValue = maxRating;
 					break;
-				}
 				case "Enter":
 				case " ": {
 					event.preventDefault();
 					const valueToSet = roundToPrecision(currentValue, precision);
-					if (valueToSet !== rating) {
-						updateRating(valueToSet);
-					}
+					if (valueToSet !== rating) updateRating(valueToSet);
 					setKeyboardFocusValue(valueToSet);
 					setHoverRating(0);
 					return;
@@ -213,14 +178,13 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
 				default:
 					return;
 			}
-
 			if (newValue !== undefined) {
 				event.preventDefault();
-				const roundedValue = roundToPrecision(newValue, precision);
-				setKeyboardFocusValue(roundedValue);
-				setHoverRating(roundedValue);
+				const rounded = roundToPrecision(newValue, precision);
+				setKeyboardFocusValue(rounded);
+				setHoverRating(rounded);
 			}
-		};
+		}
 
 		const displayRating =
 			hoverRating > 0
@@ -267,43 +231,34 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
 					const itemClasses = `star-item ${isCurrentKeyboardFocus && usingKeyboard ? "keyboard-focused" : ""} ${isActive ? "active" : ""} ${!isInteractive ? "non-interactive" : ""}`;
 					const starFillColor = activeColorsEnabled
 						? getColorForRating(
-								displayRating,
-								maxRating,
-								activeColorsEnabled,
-								customActiveColors,
-							)
+							displayRating,
+							maxRating,
+							activeColorsEnabled,
+							customActiveColors,
+						)
 						: undefined;
 
 					if (variant === "circle" || variant === "square") {
 						const activeColorForGradient = activeColorsEnabled
 							? getColorForRating(
-									displayRating,
-									maxRating,
-									activeColorsEnabled,
-									customActiveColors,
-								)
+								displayRating,
+								maxRating,
+								activeColorsEnabled,
+								customActiveColors,
+							)
 							: "var(--star-bg-selected)";
-
 						return (
 							<div
 								role="presentation"
 								key={starId}
 								className={`${itemClasses} star-background star-background--${variant}`}
-								style={
-									{
-										"--star-fill-percentage": fillPercentage,
-										"--star-active-bg-color": activeColorForGradient,
-									} as React.CSSProperties
-								}
-								onClick={
-									isInteractive ? (e) => handleClick(e, index) : undefined
-								}
-								onMouseEnter={
-									isInteractive ? (e) => handleMouseEnter(e, index) : undefined
-								}
-								onMouseMove={
-									isInteractive ? (e) => handleMouseMove(e, index) : undefined
-								}
+								style={{
+									"--star-fill-percentage": fillPercentage,
+									"--star-active-bg-color": activeColorForGradient,
+								} as React.CSSProperties}
+								onClick={isInteractive ? (e) => handleClick(e, index) : undefined}
+								onMouseEnter={isInteractive ? (e) => handleMouseEnter(e, index) : undefined}
+								onMouseMove={isInteractive ? (e) => handleMouseMove(e, index) : undefined}
 							>
 								<StarIcon
 									starId={starId}
@@ -321,12 +276,8 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
 							key={starId}
 							className={`${itemClasses} star-button ${disabled ? "disabled" : ""} ${readOnly ? "readonly" : ""}`}
 							onClick={isInteractive ? (e) => handleClick(e, index) : undefined}
-							onMouseEnter={
-								isInteractive ? (e) => handleMouseEnter(e, index) : undefined
-							}
-							onMouseMove={
-								isInteractive ? (e) => handleMouseMove(e, index) : undefined
-							}
+							onMouseEnter={isInteractive ? (e) => handleMouseEnter(e, index) : undefined}
+							onMouseMove={isInteractive ? (e) => handleMouseMove(e, index) : undefined}
 						>
 							<StarIcon
 								fillPercentage={fillPercentage}
