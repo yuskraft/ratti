@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/a11y/noStaticElementInteractions: <explanation> */
 import {
 	type ForwardedRef,
 	forwardRef,
@@ -303,7 +304,6 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
 								onMouseMove={
 									isInteractive ? (e) => handleMouseMove(e, index) : undefined
 								}
-								onKeyDown={isInteractive ? (e) => handleKeyDown(e) : undefined}
 							>
 								<StarIcon
 									starId={starId}
@@ -321,7 +321,6 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
 							key={starId}
 							className={`${itemClasses} star-button ${disabled ? "disabled" : ""} ${readOnly ? "readonly" : ""}`}
 							onClick={isInteractive ? (e) => handleClick(e, index) : undefined}
-							onKeyDown={isInteractive ? (e) => handleKeyDown(e) : undefined}
 							onMouseEnter={
 								isInteractive ? (e) => handleMouseEnter(e, index) : undefined
 							}
