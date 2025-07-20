@@ -10,7 +10,8 @@
 	"scripts": {
 		"build": "vite build",
 		"storybook": "storybook dev -p 6006",
-		"build-storybook": "storybook build"
+		"build-storybook": "storybook build",
+		"fix": "biome check --write ."
 	},
 	"peerDependencies": {
 		"react": "18.2.0",

@@ -1,151 +1,151 @@
 @property --fill-stop {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 0%;
+	syntax: "<percentage>";
+	inherits: false;
+	initial-value: 0%;
 }
 
 .star-rating {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  --star-size: 24px;
-  --star-color: #f59e0b;
-  --star-hover-color: #fbbf24;
-  --star-selected-color: #f59e0b;
-  --star-disabled-color: #94a3b8;
-  --star-icon-on-bg: #ffffff;
-  --star-bg-default: #dbdbdb;
-  --star-bg-selected: var(--star-selected-color);
-  -webkit-tap-highlight-color: transparent;
-  position: relative;
-  outline: none !important;
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	--star-size: 24px;
+	--star-color: #f59e0b;
+	--star-hover-color: #fbbf24;
+	--star-selected-color: #f59e0b;
+	--star-disabled-color: #94a3b8;
+	--star-icon-on-bg: #ffffff;
+	--star-bg-default: #dbdbdb;
+	--star-bg-selected: var(--star-selected-color);
+	-webkit-tap-highlight-color: transparent;
+	position: relative;
+	outline: none !important;
 }
 
 .star-item {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  line-height: 1;
-  background: none;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  width: var(--star-size);
-  height: var(--star-size);
-  color: var(--star-color);
-  transition: all 0.2s ease;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	line-height: 1;
+	background: none;
+	border: none;
+	cursor: pointer;
+	position: relative;
+	width: var(--star-size);
+	height: var(--star-size);
+	color: var(--star-color);
+	transition: all 0.2s ease;
 }
 
 .star-item.non-interactive {
-  cursor: default;
+	cursor: default;
 }
 
 .star-button:not(.non-interactive):hover {
-  color: var(--star-hover-color);
-  transform: scale(1.1);
+	color: var(--star-hover-color);
+	transform: scale(1.1);
 }
 
 .star-button:not(.non-interactive):focus {
-  outline: none;
+	outline: none;
 }
 
 .star-button:not(.non-interactive):active {
-  transform: scale(0.95);
+	transform: scale(0.95);
 }
 
 .star-button.disabled,
 .star-item.disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-  color: var(--star-disabled-color);
+	cursor: not-allowed;
+	opacity: 0.6;
+	color: var(--star-disabled-color);
 }
 
 .star-button.readonly,
 .star-item.readonly {
-  cursor: default;
+	cursor: default;
 }
 
 .star-background {
-  width: calc(var(--star-size) + 8px);
-  height: calc(var(--star-size) + 8px);
-  transition: --fill-stop 0.1s;
+	width: calc(var(--star-size) + 8px);
+	height: calc(var(--star-size) + 8px);
+	transition: --fill-stop 0.1s;
 
-  --active-bg: var(--star-active-bg-color, var(--star-bg-selected));
-  --inactive-bg: var(--star-bg-default);
-  --fill-stop: calc(var(--star-fill-percentage, 0) * 100%);
-  background: linear-gradient(
-    to right,
-    var(--active-bg) var(--fill-stop),
-    var(--inactive-bg) var(--fill-stop)
-  );
+	--active-bg: var(--star-active-bg-color, var(--star-bg-selected));
+	--inactive-bg: var(--star-bg-default);
+	--fill-stop: calc(var(--star-fill-percentage, 0) * 100%);
+	background: linear-gradient(
+		to right,
+		var(--active-bg) var(--fill-stop),
+		var(--inactive-bg) var(--fill-stop)
+	);
 }
 
 .star-background--circle {
-  border-radius: 50%;
-  outline-offset: 2px;
+	border-radius: 50%;
+	outline-offset: 2px;
 }
 
 .star-background--square {
-  border-radius: 4px;
+	border-radius: 4px;
 }
 
 .star-icon {
-  width: var(--star-size);
-  height: var(--star-size);
-  display: block;
+	width: var(--star-size);
+	height: var(--star-size);
+	display: block;
 }
 
 .star-icon path {
-  transition: fill 0.2s ease;
+	transition: fill 0.2s ease;
 }
 
 .star-item:not(.non-interactive):hover {
-  transform: scale(1.1);
+	transform: scale(1.1);
 }
 
 .star-rating.variant-default .star-item:not(.non-interactive):hover {
-  color: var(--star-hover-color);
+	color: var(--star-hover-color);
 }
 
 .star-rating:focus-visible {
-  outline: 2px solid var(--star-hover-color);
-  outline-offset: 3px;
-  border-radius: 4px;
+	outline: 2px solid var(--star-hover-color);
+	outline-offset: 3px;
+	border-radius: 4px;
 }
 
 .star-item.keyboard-focused {
-  outline: 2px dashed var(--star-hover-color) !important;
-  outline-offset: 1px;
+	outline: 2px dashed var(--star-hover-color) !important;
+	outline-offset: 1px;
 }
 
 .star-item.keyboard-focused .star-background {
-  outline: 10px solid var(--star-icon-on-bg);
-  outline-offset: 2px;
+	outline: 10px solid var(--star-icon-on-bg);
+	outline-offset: 2px;
 }
 
 .star-background.disabled,
 .star-background.readonly,
 .star-item.disabled .star-background,
 .star-item.readonly .star-background {
-  background-image: none;
-  background-color: var(--star-disabled-color);
-  opacity: 0.6;
+	background-image: none;
+	background-color: var(--star-disabled-color);
+	opacity: 0.6;
 }
 
 .star-background .star-icon {
-  color: var(--star-color);
-  fill: var(--star-icon-on-bg);
-  stroke: var(--star-icon-on-bg);
+	color: var(--star-color);
+	fill: var(--star-icon-on-bg);
+	stroke: var(--star-icon-on-bg);
 }
 
 .star-background.disabled .star-icon,
 .star-background.readonly .star-icon {
-  color: rgba(255, 255, 255, 0.7);
-  fill: currentColor;
-  stroke: currentColor;
+	color: rgba(255, 255, 255, 0.7);
+	fill: currentColor;
+	stroke: currentColor;
 }
 
 .star-rating.readonly-or-disabled {
-  opacity: 0.7;
+	opacity: 0.7;
 }
