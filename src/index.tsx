@@ -28,9 +28,9 @@ export interface StarRatingProps {
 	variant?: StarRatingVariant;
 	svgPathD?: string;
 	className?: string;
+	size?: number | string;
 }
 
-// Star rating component with keyboard and mouse support
 export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
 	(
 		{
@@ -48,6 +48,7 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
 			variant = "default",
 			svgPathD,
 			className = "",
+			size, 
 		}: StarRatingProps,
 		ref: ForwardedRef<HTMLDivElement>,
 	) => {
@@ -193,6 +194,8 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
 					? keyboardFocusValue
 					: rating;
 
+		const starSize = size ? (typeof size === "number" ? `${size}px` : size) : undefined;
+
 		return (
 			<div
 				ref={containerRef}
@@ -211,6 +214,7 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
 				onBlur={isInteractive ? handleBlur : undefined}
 				onKeyDown={isInteractive ? handleKeyDown : undefined}
 				tabIndex={isInteractive ? 0 : -1}
+				style={{ ...(starSize ? { '--star-size': starSize } : {}) } as React.CSSProperties}
 			>
 				{[...Array(maxRating)].map((_, index) => {
 					const starValue = index + 1;

@@ -1,0 +1,129 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { RateStar } from './index'
+import { useState } from 'react';
+
+<Meta title="Welcome" />
+
+#  Welcome to Ratti!
+
+This Storybook showcases the **Ratti** component—a flexible, customizable star rating UI for your React projects.
+
+---
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '120px', margin: '32px 0' }}>
+  {(() => {
+    const [value, setValue] = useState(4.5);
+    const [variant, setVariant] = useState('default');
+    const [maxRating, setMaxRating] = useState(5);
+    const [precision, setPrecision] = useState(0.5);
+    const [activeColorsEnabled, setActiveColorsEnabled] = useState(false);
+    const [size, setSize] = useState(48);
+    const [readOnly, setReadOnly] = useState(false);
+    return <>
+      <div style={{ display: 'flex', gap: 16, marginBottom: 20, flexWrap: 'wrap', justifyContent: 'center' }}>
+        <label style={{ display: 'flex', flexDirection: 'column', fontSize: 14 }}>
+          Variant
+          <select value={variant} onChange={e => setVariant(e.target.value)} style={{ marginTop: 4 }}>
+            <option value="default">default</option>
+            <option value="circle">circle</option>
+            <option value="square">square</option>
+          </select>
+        </label>
+        <label style={{ display: 'flex', flexDirection: 'column', fontSize: 14 }}>
+          Max. Count
+          <input  type="number" min={1} max={15} value={maxRating} onChange={e => setMaxRating(Number(e.target.value))} style={{ marginTop: 4, width: 60 }} />
+        </label>
+        <label style={{ display: 'flex', flexDirection: 'column', fontSize: 14 }}>
+          Precision
+          <input type="number" min={0.1} max={1} step={0.1} value={precision} onChange={e => setPrecision(Number(e.target.value))} style={{ marginTop: 4, width: 60 }} />
+        </label>
+        <label style={{ display: 'flex', flexDirection: 'column', fontSize: 14 }}>
+          Size
+          <input type="number" min={12} max={96} value={size} onChange={e => setSize(Number(e.target.value))} style={{ marginTop: 4, width: 60 }} />
+        </label>
+        <label style={{ display: 'flex', flexDirection: 'column', fontSize: 14 }}>
+          Value
+          <input
+            type="number"
+            min={0}
+            max={maxRating}
+            step={precision}
+            value={value}
+            onChange={e => {
+              let v = Number(e.target.value);
+              if (isNaN(v)) v = 0;
+              if (v < 0) v = 0;
+              if (v > maxRating) v = maxRating;
+              setValue(v);
+            }}
+            style={{ marginTop: 4, width: 60 }}
+          />
+        </label>
+        <label style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: 14, gap: 4, marginTop: 18 }}>
+          <input type="checkbox" checked={activeColorsEnabled} onChange={e => setActiveColorsEnabled(e.target.checked)} />
+          Active Colors
+        </label>
+        <label style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: 14, gap: 4, marginTop: 18 }}>
+          <input type="checkbox" checked={readOnly} onChange={e => setReadOnly(e.target.checked)} />
+          Read Only
+        </label>
+      </div>
+      <RateStar
+        maxRating={maxRating}
+        value={value}
+        onChange={setValue}
+        precision={precision}
+        size={size}
+        variant={variant}
+        activeColorsEnabled={activeColorsEnabled}
+        readOnly={readOnly}
+      />
+      <div style={{ marginTop: 12, fontSize: 18, color: '#666' }}>Current value: {value}</div>
+    </>;
+  })()}
+</div>
+
+## 🚀 What is Ratti?
+
+`Ratti` is a highly-configurable star rating component supporting:
+- Custom number of stars (1–15)
+- Fractional ratings (e.g., 3.5 stars)
+- Read-only & disabled modes
+- Custom SVG icons
+- Color customization (default, custom, or variant backgrounds)
+- Variants: **default**, **circle**, **square**
+- Controlled & uncontrolled usage
+- Accessibility & keyboard support
+
+## 📚 Explore Stories
+
+- **Default Usage**: Basic star rating with various props
+- **Fractional Ratings**: Allow half-stars or custom precision
+- **Variants**: Try `circle` and `square` backgrounds
+- **Custom Colors**: Use your own color palette
+- **Custom Icons**: Swap in your own SVG path
+- **Controlled State**: Manage rating externally
+- **Read-only & Disabled**: Display-only or non-interactive modes
+
+Browse the sidebar to see live examples and code for each scenario!
+
+---
+
+## 📝 Usage Example
+
+```tsx
+import { RateStar } from 'ratti';
+
+<RateStar
+  maxRating={5}
+  defaultValue={4.5}
+  precision={0.5}
+  activeColorsEnabled
+  variant="circle"
+  onChange={(val) => console.log('New rating:', val)}
+/>
+```
+
+---
+
+Happy building with Ratti!
