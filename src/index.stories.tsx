@@ -3,7 +3,7 @@ import { useState } from "react";
 import { RateStar, type StarRatingVariant } from ".";
 
 const meta = {
-	title: "Packages/RateStar",
+	title: "Ratti",
 	component: RateStar,
 	parameters: {
 		layout: "centered",

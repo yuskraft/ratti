@@ -14,7 +14,7 @@
 	--star-selected-color: #f59e0b;
 	--star-disabled-color: #94a3b8;
 	--star-icon-on-bg: #ffffff;
-	--star-bg-default: #dbdbdb;
+	--star-bg-default: #dddddd;
 	--star-bg-selected: var(--star-selected-color);
 	-webkit-tap-highlight-color: transparent;
 	position: relative;
