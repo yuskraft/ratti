@@ -7,18 +7,33 @@
 .star-rating {
 	display: flex;
 	align-items: center;
-	gap: 4px;
+	gap: var(--star-gap, 4px);
+
 	--star-size: 24px;
+	--star-gap: 4px;
+
 	--star-color: #f59e0b;
 	--star-hover-color: #fbbf24;
 	--star-selected-color: #f59e0b;
 	--star-disabled-color: #94a3b8;
+
 	--star-icon-on-bg: #ffffff;
+
 	--star-bg-default: #dddddd;
 	--star-bg-selected: var(--star-selected-color);
+	--star-active-bg-color: var(--star-selected-color);
+
+	--star-transition: all 0.2s ease;
+	--star-hover-scale: 1.1;
+	--star-active-scale: 0.95;
+
+	--star-outline: 2px solid var(--star-hover-color);
+	--star-outline-offset: 3px;
+	--star-radius: 4px;
+
 	-webkit-tap-highlight-color: transparent;
 	position: relative;
-	outline: none !important;
+	outline: none;
 }
 
 .star-item {
@@ -31,101 +46,91 @@
 	border: none;
 	cursor: pointer;
 	position: relative;
+
 	width: var(--star-size);
 	height: var(--star-size);
+
 	color: var(--star-color);
-	transition: all 0.2s ease;
-}
+	transition: var(--star-transition);
 
-.star-rating.non-interactive {
-	cursor: default;
-}
-
-.star-button:not(.non-interactive):hover {
-	color: var(--star-hover-color);
-	transform: scale(1.1);
-}
-
-.star-button:not(.non-interactive):focus {
 	outline: none;
 }
 
-.star-button:not(.non-interactive):active {
-	transform: scale(0.95);
+.star-rating:not(.disabled):not(.readonly) .star-item:hover {
+	transform: scale(var(--star-hover-scale));
 }
 
-.star-rating.disabled,
-.star-item.disabled {
+.star-rating.variant-default:not(.disabled):not(.readonly) .star-item:hover {
+	color: var(--star-hover-color);
+}
+
+.star-rating:not(.disabled):not(.readonly) .star-item:active {
+	transform: scale(var(--star-active-scale));
+}
+
+.star-rating:focus-visible {
+	outline: var(--star-outline);
+	outline-offset: var(--star-outline-offset);
+	border-radius: var(--star-radius);
+}
+
+.star-item.keyboard-focused {
+	outline: 2px dashed var(--star-hover-color);
+	outline-offset: 1px;
+}
+
+.star-rating.disabled {
 	cursor: not-allowed;
-	opacity: 0.6;
-	color: var(--star-disabled-color);
+	opacity: var(--star-disabled-opacity, 0.6);
 }
 
-.star-rating.readonly,
-.star-item.readonly {
+.star-rating.disabled .star-item {
+	color: var(--star-disabled-color);
+	pointer-events: none;
+}
+
+.star-rating.readonly {
 	cursor: default;
 }
 
-.star-background {
-	width: calc(var(--star-size) + 8px);
-	height: calc(var(--star-size) + 8px);
-	transition: --fill-stop 0.1s;
+.star-rating.readonly .star-item {
+	pointer-events: none;
+}
 
+.star-background {
+	width: calc(var(--star-size) + var(--star-bg-padding, 8px));
+	height: calc(var(--star-size) + var(--star-bg-padding, 8px));
+
+	transition: --fill-stop var(--star-fill-transition-duration, 0.1s);
 	--active-bg: var(--star-active-bg-color, var(--star-bg-selected));
 	--inactive-bg: var(--star-bg-default);
 	--fill-stop: calc(var(--star-fill-percentage, 0) * 100%);
+
 	background: linear-gradient(
 		to right,
 		var(--active-bg) var(--fill-stop),
 		var(--inactive-bg) var(--fill-stop)
 	);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .star-background--circle {
-	border-radius: 50%;
-	outline-offset: 2px;
+	border-radius: var(--star-circle-radius, 50%);
 }
 
 .star-background--square {
-	border-radius: 4px;
+	border-radius: var(--star-square-radius, 4px);
 }
 
-.star-icon {
-	width: var(--star-size);
-	height: var(--star-size);
-	display: block;
-}
-
-.star-icon path {
-	transition: fill 0.2s ease;
-}
-
-.star-item:not(.non-interactive):hover {
-	transform: scale(1.1);
-}
-
-.star-rating.variant-default .star-item:not(.non-interactive):hover {
-	color: var(--star-hover-color);
-}
-
-.star-rating:focus-visible {
-	outline: 2px solid var(--star-hover-color);
-	outline-offset: 3px;
-	border-radius: 4px;
-}
-
-.star-item.keyboard-focused {
-	outline: 2px dashed var(--star-hover-color) !important;
-	outline-offset: 1px;
-}
-
-.star-item.keyboard-focused .star-background {
-	outline: 10px solid var(--star-icon-on-bg);
+.star-item.keyboard-focused.star-background {
+	outline: 2px dashed var(--star-icon-on-bg);
 	outline-offset: 2px;
 }
 
 .star-background .star-icon {
-	color: var(--star-color);
 	fill: var(--star-icon-on-bg);
 	stroke: var(--star-icon-on-bg);
 }
