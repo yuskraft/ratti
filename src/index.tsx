@@ -199,7 +199,7 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
 		return (
 			<div
 				ref={containerRef}
-				className={`star-rating variant-${variant} ${!isInteractive ? "readonly-or-disabled" : ""} ${className}`}
+				className={`star-rating variant-${variant} ${disabled ? "disabled" : ""} ${className}`}
 				role="slider"
 				aria-orientation="horizontal"
 				aria-valuemin={0}
@@ -255,7 +255,7 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
 							<div
 								role="presentation"
 								key={starId}
-								className={`${itemClasses} star-background star-background--${variant}`}
+								className={`${itemClasses} star-background star-background--${variant} ${disabled ? 'disable' : ''}`}
 								style={{
 									"--star-fill-percentage": fillPercentage,
 									"--star-active-bg-color": activeColorForGradient,
