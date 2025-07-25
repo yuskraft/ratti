@@ -59,6 +59,7 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
       null,
     );
     const [usingKeyboard, setUsingKeyboard] = useState(false);
+    const hoverSuppressed = useRef(false);
 
     const isInteractive = !disabled && !readOnly;
     const componentId = useRef(
@@ -116,10 +117,12 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
         setHoverRating(0);
         setKeyboardFocusValue(0);
         updateRating(0);
+        hoverSuppressed.current = true;
       } else {
         updateRating(newValue);
         setHoverRating(0);
         setKeyboardFocusValue(newValue);
+        hoverSuppressed.current = false;
       }
     }
 
@@ -127,7 +130,7 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
       event: React.MouseEvent<HTMLDivElement>,
       index: number,
     ) {
-      if (!isInteractive) return;
+      if (!isInteractive || hoverSuppressed.current) return;
       const newValue = calculateRating(event, index);
       setHoverRating(newValue);
       onHoverChange?.(newValue);
@@ -137,7 +140,7 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
       event: React.MouseEvent<HTMLDivElement>,
       index: number,
     ) {
-      if (!isInteractive) return;
+      if (!isInteractive || hoverSuppressed.current) return;
       const newValue = calculateRating(event, index);
       setHoverRating(newValue);
       onHoverChange?.(newValue);
@@ -147,6 +150,7 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
       if (!isInteractive) return;
       setHoverRating(0);
       onHoverChange?.(0);
+      hoverSuppressed.current = false;
     }
 
     function handleFocus() {
