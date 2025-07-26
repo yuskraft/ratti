@@ -6,6 +6,7 @@ import {
   useImperativeHandle,
   useRef,
   useState,
+  useId,
 } from "react";
 import "./index.css";
 import { StarIcon } from "./SvgItem";
@@ -62,9 +63,7 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
     const hoverSuppressed = useRef(false);
 
     const isInteractive = !disabled && !readOnly;
-    const componentId = useRef(
-      `star-rating-${Math.random().toString(36).substring(2, 9)}`,
-    ).current;
+    const componentId = useId();
     const containerRef = useRef<HTMLDivElement>(null);
 
     useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
