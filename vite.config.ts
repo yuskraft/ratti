@@ -15,7 +15,7 @@ export default defineConfig({
 			entry: resolve(__dirname, "src/index.tsx"),
 			name: "ratti",
 			fileName: (format) => `ratti.${format}.js`,
-			formats: ["es", "cjs"],
+			formats: ["es"],
 		},
 		rollupOptions: {
 			external: ["react", "react-dom"],

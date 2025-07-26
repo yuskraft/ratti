@@ -1,12 +1,18 @@
 {
 	"name": "ratti",
-	"version": "0.1.1",
-	"main": "dist/index.js",
-	"module": "dist/index.mjs",
+	"version": "0.1.3",
+	"main": "dist/ratti.es.js",
 	"types": "dist/index.d.ts",
 	"files": [
 		"dist"
 	],
+	"exports": {
+		".": {
+			"import": "./dist/ratti.es.js",
+			"types": "./dist/index.d.ts"
+		}
+	},
+
 	"scripts": {
 		"build": "vite build",
 		"storybook": "storybook dev -p 6006",
@@ -14,8 +20,8 @@
 		"fix": "biome check --write ."
 	},
 	"peerDependencies": {
-		"react": "18.2.0",
-		"react-dom": "18.2.0"
+		"react": ">=18.0.0",
+		"react-dom": ">=18.0.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.1.2",
