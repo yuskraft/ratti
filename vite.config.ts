@@ -18,7 +18,7 @@ export default defineConfig({
 			formats: ["es"],
 		},
 		rollupOptions: {
-			external: ["react", "react-dom"],
+			external: ["react", /^react\/.*/, "react-dom", /react-dom\/.*/],
 			output: {
 				globals: {
 					react: "React",
