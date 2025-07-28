@@ -8,7 +8,6 @@
 	display: flex;
 	align-items: center;
 	gap: var(--star-gap, 4px);
-	outline: none;
 
 	--star-size: 24px;
 	--star-gap: 4px;
@@ -46,14 +45,10 @@
 	border: none;
 	cursor: pointer;
 	position: relative;
-
 	width: var(--star-size);
 	height: var(--star-size);
-
 	color: var(--star-color);
 	transition: var(--star-transition);
-
-	outline: none;
 }
 
 .star-rating:not(.disabled):not(.readonly) .star-item:hover {
