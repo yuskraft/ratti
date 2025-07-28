@@ -18,8 +18,8 @@ importers:
         specifier: 15.2.5
         version: 15.2.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       ratti:
-        specifier: ^0.1.4
-        version: 0.1.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: 1.0.0
+        version: 1.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19
         version: 19.1.0
@@ -1820,8 +1820,8 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
-  ratti@0.1.4:
-    resolution: {integrity: sha512-Ql94wJP5dHZIKbf0ZNfeBH2GFytBUnrsH2obe66tQqVVJ8Y/S2noCVPPU0eGcdSRqJVwaO0OJ9yt5FQbiOFsTA==}
+  ratti@1.0.0:
+    resolution: {integrity: sha512-l3wlAD1AVYnuWw0wARtjtbVffYJUrRIausg3F8m8Z8BvepCJz3AaE8dv5Zp09jYXN5cZe6igMZgDvxW9CSjc7A==}
     peerDependencies:
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
@@ -4097,7 +4097,7 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
-  ratti@0.1.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  ratti@1.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
