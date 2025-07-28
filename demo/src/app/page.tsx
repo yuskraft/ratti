@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { RateStar, type StarRatingVariant } from 'ratti';
-import { ArrowDownIcon, ArrowUpIcon, ArrowRightIcon } from '@radix-ui/react-icons';
+import { ArrowDownIcon, ArrowUpIcon, ArrowRightIcon, ChevronDownIcon } from '@radix-ui/react-icons';
+import * as Select from '@radix-ui/react-select';
 
 
 interface DemoProps {
@@ -69,19 +70,32 @@ export default function Home() {
   
     if (type === 'select') {
       return (
-        <select
-          value={externalValue.toString()}
-          onChange={(e) =>
-            onChange(e.target.value === 'true' ? true : e.target.value === 'false' ? false : e.target.value)
-          }
-          className="min-w-fit px-2 py-1 text-xs sm:text-sm bg-gray-800 font-medium rounded-md border-none outline-none shadow-none text-white hover:bg-gray-700"
-        >
-          {options?.map((option) => (
-            <option key={option.value.toString()} value={option.value.toString()}>
-              {option.label}
-            </option>
-          ))}
-        </select>
+        <Select.Root value={externalValue.toString()} onValueChange={(value) => onChange(value)}>
+          <Select.Trigger className="min-w-fit px-2 py-1 text-xs sm:text-sm bg-gray-800 font-medium rounded-md border-none outline-none shadow-none text-white hover:bg-gray-700 flex items-center gap-1">
+            <Select.Value placeholder="Select a value" />
+            <Select.Icon>
+              <ChevronDownIcon className="w-4 h-4" />
+            </Select.Icon>
+          </Select.Trigger>
+          <Select.Portal>
+            <Select.Content className="SelectContent">
+              <Select.ScrollUpButton className="SelectScrollUpButton">
+                <ChevronDownIcon className="w-4 h-4 text-gray-500" />
+              </Select.ScrollUpButton>
+              <Select.Viewport className="SelectViewport">
+                {options?.map((option) => (
+                  <Select.Item key={option.value.toString()} value={option.value.toString()} className="SelectItem">
+                    <Select.ItemText>{option.label}</Select.ItemText>
+                    <Select.ItemIndicator className="SelectItemIndicator">✓</Select.ItemIndicator>
+                  </Select.Item>
+                ))}
+              </Select.Viewport>
+              <Select.ScrollDownButton className="SelectScrollDownButton">
+                <ChevronDownIcon className="w-4 h-4 text-gray-500" />
+              </Select.ScrollDownButton>
+            </Select.Content>
+          </Select.Portal>
+        </Select.Root>
       );
     }
 
@@ -170,15 +184,15 @@ export default function Home() {
                 Features multiple variants, precision control, and smooth animations for modern web applications.
               </p>
             <div className='flex gap-2 flex-wrap'>
-              <button type="button" className="px-3 py-2 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors text-sm flex items-center gap-2">
+              <button type="button" className="px-3 py-2 bg-white text-black font-semibold rounded-md hover:bg-gray-200 transition-colors text-sm flex items-center gap-2">
                 Get Started
                 <ArrowRightIcon className="w-4 h-4" />
               </button>
-              <a   href="https://github.com/yuskraft/ratti" target="_blank" rel="noopener noreferrer" className='font-mono mono-light px-3 py-2 bg-gray-800 text-white rounded-lg border border-gray-800 hover:bg-gray-700 transition-colors text-sm'>
+              <a   href="https://github.com/yuskraft/ratti" target="_blank" rel="noopener noreferrer" className='font-mono mono-light px-3 py-2 bg-gray-800 text-white rounded-md border border-gray-800 hover:bg-gray-700 transition-colors text-sm'>
                 star on github
               </a>
             </div>
-                          <div className="rounded-lg mt-8 sm:mt-[50px] font-mono text-sm sm:text-lg text-gray-100 overflow-x-auto relative">
+                          <div className="rounded-md mt-8 sm:mt-[50px] font-mono text-sm sm:text-lg text-gray-100 overflow-x-auto relative">
                 <div className="absolute top-0 left-[-20px] sm:left-[-45px] h-full w-[100px] sm:w-[150px] bg-gradient-to-r from-black to-transparent z-20"></div>
               <div className="space-y-3 min-w-0">
                 <div className="flex min-w-0">
@@ -280,7 +294,7 @@ export default function Home() {
           </div>
 
           <div className="space-y-6 w-full lg:w-auto">
-            <div className="rounded-lg flex items-center justify-center w-[400px]">
+            <div className="rounded-md flex items-center justify-center w-[400px]">
               <RateStar
                 variant={props.variant}
                 value={props.value}
