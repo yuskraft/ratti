@@ -11,7 +11,7 @@
 		"@radix-ui/react-icons": "^1.3.2",
 		"@radix-ui/react-select": "^2.2.5",
 		"next": "15.2.5",
-		"ratti": "1.0.0",
+		"ratti": "1.0.1",
 		"react": "^19",
 		"react-dom": "^19"
 	},
