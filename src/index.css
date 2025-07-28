@@ -8,6 +8,7 @@
 	display: flex;
 	align-items: center;
 	gap: var(--star-gap, 4px);
+	outline: none;
 
 	--star-size: 24px;
 	--star-gap: 4px;
@@ -33,7 +34,6 @@
 
 	-webkit-tap-highlight-color: transparent;
 	position: relative;
-	outline: none;
 }
 
 .star-item {
@@ -69,8 +69,8 @@
 }
 
 .star-rating:focus-visible {
-	outline: var(--star-outline);
-	outline-offset: var(--star-outline-offset);
+	outline: none;
+	outline-offset: 0;
 	border-radius: var(--star-radius);
 }
 
