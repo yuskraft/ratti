@@ -40,16 +40,16 @@ export default function Home() {
     step,
     options
   }: {
-    value: any;
-    onChange: (value: any) => void;
+    value: number | string | boolean;
+    onChange: (value: number | string | boolean) => void;
     type?: 'number' | 'select' | 'boolean';
     min?: number;
     max?: number;
     step?: number;
-    options?: { value: any; label: string }[];
+    options?: { value: string | number; label: string }[];
   }) => {
     const handleIncrement = () => {
-      if (type === 'number' && max !== undefined && externalValue < max) {
+      if (type === 'number' && max !== undefined && typeof externalValue === 'number' && externalValue < max) {
         const stepValue = step || 1;
         const multiplier = 1 / stepValue;
         const newValue = Math.min(max, Math.round((externalValue + stepValue) * multiplier) / multiplier);
@@ -58,7 +58,7 @@ export default function Home() {
     };
 
     const handleDecrement = () => {
-      if (type === 'number' && min !== undefined && externalValue > min) {
+      if (type === 'number' && min !== undefined && typeof externalValue === 'number' && externalValue > min) {
         const stepValue = step || 1;
         const multiplier = 1 / stepValue;
         const newValue = Math.max(min, Math.round((externalValue - stepValue) * multiplier) / multiplier);
@@ -120,7 +120,7 @@ export default function Home() {
         <button
           type="button"
           onClick={handleDecrement}
-          disabled={min !== undefined && externalValue <= min}
+          disabled={min !== undefined && typeof externalValue === 'number' && externalValue <= min}
           className="w-6 sm:h-[28px] h-[24px] text-white bg-gray-800 hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-l-md flex items-center justify-center transition-colors"
         >
           <ArrowDownIcon/>
@@ -131,7 +131,7 @@ export default function Home() {
         <button
           type="button"
           onClick={handleIncrement}
-          disabled={max !== undefined && externalValue >= max}
+          disabled={max !== undefined && typeof externalValue === 'number' && externalValue >= max}
           className="w-6 sm:h-[28px] h-[24px] text-white bg-gray-800 hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-r-md flex items-center justify-center transition-colors"
         >
           <ArrowUpIcon  />
@@ -151,13 +151,13 @@ export default function Home() {
     options
   }: { 
     propName: string;
-    value: any; 
-    onChange: (value: any) => void; 
+    value: number | string | boolean; 
+    onChange: (value: number | string | boolean) => void; 
     type?: 'number' | 'select' | 'boolean';
     min?: number;
     max?: number;
     step?: number;
-    options?: { value: any; label: string }[];
+    options?: { value: string | number; label: string }[];
   }) => (
     <div className="flex items-center gap-1 sm:gap-2 ml-4 flex-wrap">
       <span className="text-gray-500 text-xs sm:text-sm">{propName}</span>
@@ -219,7 +219,7 @@ export default function Home() {
                     <PropLine
                       propName="variant"
                       value={props.variant}
-                      onChange={(value) => updateProp('variant', value)}
+                      onChange={(value) => updateProp('variant', value as StarRatingVariant)}
                       type="select"
                       options={[
                         { value: 'default', label: 'default' },
@@ -233,7 +233,7 @@ export default function Home() {
                     <PropLine
                       propName="value"
                       value={props.value}
-                      onChange={(value) => updateProp('value', value)}
+                      onChange={(value) => updateProp('value', value as number)}
                       min={0}
                       max={props.maxRating}
                       step={props.precision}
@@ -244,7 +244,7 @@ export default function Home() {
                     <PropLine
                       propName="maxRating"
                       value={props.maxRating}
-                      onChange={(value) => updateProp('maxRating', value)}
+                      onChange={(value) => updateProp('maxRating', value as number)}
                       min={1}
                       max={10}
                     />
@@ -254,7 +254,7 @@ export default function Home() {
                     <PropLine
                       propName="precision"
                       value={props.precision}
-                      onChange={(value) => updateProp('precision', value)}
+                      onChange={(value) => updateProp('precision', value as number)}
                       min={0.1}
                       max={1}
                       step={0.1}
@@ -265,7 +265,7 @@ export default function Home() {
                     <PropLine
                       propName="size"
                       value={props.size}
-                      onChange={(value) => updateProp('size', value)}
+                      onChange={(value) => updateProp('size', value as number)}
                       min={16}
                       max={128}
                     />
@@ -275,7 +275,7 @@ export default function Home() {
                     <PropLine
                       propName="activeColorsEnabled"
                       value={props.activeColorsEnabled}
-                      onChange={(value) => updateProp('activeColorsEnabled', value)}
+                      onChange={(value) => updateProp('activeColorsEnabled', value as boolean)}
                       type="boolean"
                     />
                   </div>
@@ -284,7 +284,7 @@ export default function Home() {
                     <PropLine
                       propName="readOnly"
                       value={props.readOnly}
-                      onChange={(value) => updateProp('readOnly', value)}
+                      onChange={(value) => updateProp('readOnly', value as boolean)}
                       type="boolean"
                     />
                   </div>
