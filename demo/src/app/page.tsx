@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { RateStar, type StarRatingVariant } from 'ratti';
-import { ArrowDownIcon, ArrowUpIcon, ArrowRightIcon, ChevronDownIcon } from '@radix-ui/react-icons';
+import { ArrowDownIcon, ArrowUpIcon, ArrowRightIcon, ChevronDownIcon, ReloadIcon } from '@radix-ui/react-icons';
 import * as Select from '@radix-ui/react-select';
 
 
@@ -29,6 +29,18 @@ export default function Home() {
 
   const updateProp = <K extends keyof DemoProps>(key: K, value: DemoProps[K]) => {
       setProps(prev => ({ ...prev, [key]: value }));
+  };
+
+  const resetState = () => {
+    setProps({
+      variant: 'default',
+      value: 4.5,
+      maxRating: 5,
+      precision: 0.5,
+      size: 64,
+      activeColorsEnabled: false,
+      readOnly: false,
+    });
   };
 
   const InlineInput = ({
@@ -84,7 +96,7 @@ export default function Home() {
           <Select.Portal>
             <Select.Content className="SelectContent">
               <Select.ScrollUpButton className="SelectScrollUpButton">
-                <ChevronDownIcon className="w-4 h-4 text-gray-500" />
+                <ChevronDownIcon className="w-4 h-4 text-white" />
               </Select.ScrollUpButton>
               <Select.Viewport className="SelectViewport">
                 {options?.map((option) => (
@@ -95,7 +107,7 @@ export default function Home() {
                 ))}
               </Select.Viewport>
               <Select.ScrollDownButton className="SelectScrollDownButton">
-                <ChevronDownIcon className="w-4 h-4 text-gray-500" />
+                <ChevronDownIcon className="w-4 h-4 text-white" />
               </Select.ScrollDownButton>
             </Select.Content>
           </Select.Portal>
@@ -311,9 +323,14 @@ export default function Home() {
               />
             </div>
             <div className="text-center">
-              <div className="text-lg sm:text-xl text-gray-300">
-                <span className="text-white font-semibold">{props.value}</span>
-              </div>
+              <button
+                type="button"
+                onClick={resetState}
+                className="text-gray-500 rounded-md transition-colors text-sm font-medium"
+                title="Reset to the default values"
+              >
+                <ReloadIcon className="w-4 h-4" />
+              </button>
             </div>
           </div>
         </div>
