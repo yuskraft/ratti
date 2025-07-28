@@ -231,6 +231,26 @@ The component uses CSS custom properties for easy theming:
 }
 ```
 
+### Variant-Specific Properties
+
+For circle and square variants, additional properties are available:
+
+```css
+.star-rating {
+  /* Circle variant */
+  --star-circle-radius: 50%;
+  
+  /* Square variant */
+  --star-square-radius: 4px;
+  
+  /* Background properties for circle/square variants */
+  --star-bg-default: #dddddd;
+  --star-bg-selected: var(--star-selected-color);
+  --star-active-bg-color: var(--star-selected-color);
+  --star-icon-on-bg: #ffffff;
+}
+```
+
 ### Custom Styling
 
 ```tsx
@@ -238,7 +258,6 @@ The component uses CSS custom properties for easy theming:
   maxRating={5}
   defaultValue={3}
   className="my-custom-rating"
-  style={{ "--star-size": "32px" }}
 />
 ```
 
@@ -247,6 +266,20 @@ The component uses CSS custom properties for easy theming:
   --star-color: #3b82f6;
   --star-hover-color: #60a5fa;
   --star-selected-color: #1d4ed8;
+}
+
+/* Custom circle variant */
+.my-custom-rating.variant-circle {
+  --star-circle-radius: 25%;
+  --star-bg-default: #e5e7eb;
+  --star-bg-selected: #3b82f6;
+}
+
+/* Custom square variant */
+.my-custom-rating.variant-square {
+  --star-square-radius: 8px;
+  --star-bg-default: #f3f4f6;
+  --star-bg-selected: #10b981;
 }
 ```
 

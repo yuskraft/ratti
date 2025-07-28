@@ -198,10 +198,10 @@ export default function Home() {
                 Features multiple variants, precision control, and smooth animations for modern web applications.
               </p>
             <div className='flex gap-2 flex-wrap'>
-              <button type="button" className="px-3 py-2 bg-white text-black font-semibold rounded-md hover:bg-gray-200 transition-colors text-sm flex items-center gap-2">
+              <a href="https://www.npmjs.com/package/ratti" target="_blank" rel="noopener noreferrer" className="px-3 py-2 bg-white text-black font-semibold rounded-md hover:bg-gray-200 transition-colors text-sm flex items-center gap-2">
                 Get Started
                 <ArrowRightIcon className="w-4 h-4" />
-              </button>
+              </a>
               <a   href="https://github.com/yuskraft/ratti" target="_blank" rel="noopener noreferrer" className='font-mono mono-light px-3 py-2 bg-gray-800 text-white rounded-md border border-gray-800 hover:bg-gray-700 transition-colors text-sm'>
                 star on github
               </a>
