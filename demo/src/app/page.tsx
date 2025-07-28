@@ -192,7 +192,7 @@ export default function Home() {
     <main className="min-h-screen bg-black text-white p-4 sm:p-8">
       <div className="max-w-7xl mx-auto">
         <div className='flex flex-col mt-[5%] mb-[65px] sm:w-[880px] mx-auto'>
-        <h2 className="text-xl sm:text-2xl font-semibold text-white mb-2">Ratti <span className="text-gray-400 text-sm">v0.1.4</span></h2>
+        <h2 className="text-xl sm:text-2xl font-semibold text-white mb-2">Ratti <span className="text-gray-400 text-sm">v1.0.1</span></h2>
               <p className="text-gray-300 mb-6 sm:mb-[25px] max-w-md text-sm sm:text-base">
                 A lightweight, customizable star rating component for React with TypeScript support. 
                 Features multiple variants, precision control, and smooth animations for modern web applications.
@@ -203,7 +203,7 @@ export default function Home() {
                 <ArrowRightIcon className="w-4 h-4" />
               </a>
               <a   href="https://github.com/yuskraft/ratti" target="_blank" rel="noopener noreferrer" className='font-mono mono-light px-3 py-2 bg-gray-800 text-white rounded-md border border-gray-800 hover:bg-gray-700 transition-colors text-sm'>
-                star on github
+              Star on Github
               </a>
             </div>
         </div>
@@ -335,6 +335,31 @@ export default function Home() {
             </div>
           </div>
         </div>
+        
+        <footer className="mt-16 pt-8">
+          <div className="text-center">
+            <p className="text-gray-600 text-[9px]">
+              Created by{' '}
+              <a 
+                href="https://x.com/yuskraft" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-white hover:text-gray-500 transition-colors font-medium"
+              >
+                Nurlan Yusifli
+              </a>
+              {' '}•{' '}
+              <a 
+                href="https://x.com/yuskraft" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-white transition-colors"
+              >
+                @yuskraft
+              </a>
+            </p>
+          </div>
+        </footer>
       </div>
     </main>
   );

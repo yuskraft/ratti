@@ -1,20 +1,23 @@
 # Ratti
 
+React Star Rating.
 A highly-configurable, accessible star rating component for React applications with TypeScript support.
+
+![Ratti Demo Screenshot](https://ratti-rating.vercel.app/screen.png)
 
 **[🌐 Live Demo](https://ratti-rating.vercel.app/)**
 
 ## Features
 
-- ⭐ **Flexible Rating System**: Support for 1-15 stars with fractional ratings
-- 🎨 **Multiple Variants**: Default, circle, and square background styles
-- 🌈 **Custom Colors**: Built-in color schemes or custom color arrays
-- ♿ **Accessibility**: Full keyboard navigation and ARIA support
-- 📱 **Responsive**: Works seamlessly across all device sizes
-- 🎯 **Precision Control**: Configurable rating precision (0.1, 0.5, 1.0, etc.)
-- 🎭 **Interactive States**: Hover, focus, and active states with smooth transitions
-- 🔧 **Customizable**: Custom SVG icons, sizes, and styling
-- 📦 **Zero Dependencies**: Pure React component with no external dependencies
+- **Flexible Rating System**: Support for 1-15 stars with fractional ratings
+- **Multiple Variants**: Default, circle, and square background styles
+- **Custom Colors**: Built-in color schemes or custom color arrays
+- **Accessibility**: Full keyboard navigation and ARIA support
+- **Responsive**: Works seamlessly across all device sizes
+- **Precision Control**: Configurable rating precision (0.1, 0.5, 1.0, etc.)
+- **Interactive States**: Hover, focus, and active states with smooth transitions
+- **Customizable**: Custom SVG icons, sizes, and styling
+- **Zero Dependencies**: Pure React component with no external dependencies
 
 ## Installation
 
@@ -282,19 +285,3 @@ For circle and square variants, additional properties are available:
   --star-bg-selected: #10b981;
 }
 ```
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## License
-
-MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-Made with ❤️ for the React community
