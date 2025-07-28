@@ -17,6 +17,21 @@
 		"type": "git",
 		"url": "https://github.com/yuskraft/ratti"
 	},
+	"keywords": [
+		"react",
+		"rating",
+		"rating component",
+		"react rating",
+		"star-rating",
+		"rating-star",
+		"star-rating-component",
+		"star rating",
+		"star",
+		"stars",
+		"star component",
+		"review",
+		"react review"
+	],
 
 	"scripts": {
 		"build": "vite build",
