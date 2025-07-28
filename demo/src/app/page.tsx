@@ -202,8 +202,11 @@ export default function Home() {
                 Get Started
                 <ArrowRightIcon className="w-4 h-4" />
               </a>
-              <a   href="https://github.com/yuskraft/ratti" target="_blank" rel="noopener noreferrer" className='font-mono mono-light px-3 py-2 bg-gray-800 text-white rounded-md border border-gray-800 hover:bg-gray-700 transition-colors text-sm'>
-              Star on Github
+              <a href="https://github.com/yuskraft/ratti" target="_blank" rel="noopener noreferrer" className='font-mono mono-light px-3 py-2 bg-gray-800 text-white rounded-md border border-gray-800 hover:bg-gray-700 transition-colors text-sm'>
+                Star on Github
+              </a>
+              <a href="/ai.txt" target="_blank" rel="noopener noreferrer" className='font-mono mono-light px-3 py-2 bg-gray-800 text-white rounded-md border border-gray-800 hover:bg-gray-700 transition-colors text-sm'>
+                AI.txt
               </a>
             </div>
         </div>
