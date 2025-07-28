@@ -2,7 +2,8 @@
 
 A highly-configurable, accessible star rating component for React applications with TypeScript support.
 
-![Ratti Star Rating Component](demo/public/screen.png)
+![Ratti Star Rating Component](https://ratti-rating.vercel.app/screen.png)
+![Demo website](https://ratti-rating.vercel.app/)
 
 ## Features
 
