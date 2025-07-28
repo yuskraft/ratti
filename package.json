@@ -1,6 +1,6 @@
 {
 	"name": "ratti",
-	"version": "0.1.4",
+	"version": "1.0.0",
 	"main": "dist/ratti.es.js",
 	"types": "dist/index.d.ts",
 	"files": [
