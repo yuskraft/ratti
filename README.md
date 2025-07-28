@@ -1,7 +1,7 @@
 # Ratti
 
-React Star Rating.
-A highly-configurable, accessible star rating component for React applications with TypeScript support.
+React Star Rating - Zero dependency, 
+a highly-configurable, accessible rating component for React applications with TypeScript support.
 
 ![Ratti Demo Screenshot](https://ratti-rating.vercel.app/screen.png)
 
