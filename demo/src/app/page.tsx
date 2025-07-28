@@ -1,7 +1,7 @@
 'use client';
 
-import { RateStar, type StarRatingVariant } from 'ratti';
 import { useState } from 'react';
+import { RateStar, type StarRatingVariant } from 'ratti';
 import { ArrowDownIcon, ArrowUpIcon, ArrowRightIcon } from '@radix-ui/react-icons';
 
 
@@ -103,7 +103,7 @@ export default function Home() {
           type="button"
           onClick={handleDecrement}
           disabled={min !== undefined && externalValue <= min}
-          className="w-6 h-[28px] text-white bg-gray-800 hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-l-md flex items-center justify-center transition-colors"
+          className="w-6 sm:h-[28px] h-[24px] text-white bg-gray-800 hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-l-md flex items-center justify-center transition-colors"
         >
           <ArrowDownIcon/>
         </button>
@@ -114,7 +114,7 @@ export default function Home() {
           type="button"
           onClick={handleIncrement}
           disabled={max !== undefined && externalValue >= max}
-          className="w-6 h-[28px] text-white bg-gray-800 hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-r-md flex items-center justify-center transition-colors"
+          className="w-6 sm:h-[28px] h-[24px] text-white bg-gray-800 hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-r-md flex items-center justify-center transition-colors"
         >
           <ArrowUpIcon  />
         </button>
@@ -141,7 +141,7 @@ export default function Home() {
     step?: number;
     options?: { value: any; label: string }[];
   }) => (
-    <div className="flex items-center gap-1 sm:gap-2 ml-2 sm:ml-4 flex-wrap">
+    <div className="flex items-center gap-1 sm:gap-2 ml-4 flex-wrap">
       <span className="text-gray-500 text-xs sm:text-sm">{propName}</span>
       <span className="text-gray-400 text-xs sm:text-sm">=</span>
       <span className="text-gray-500 text-xs sm:text-sm">&#123;</span>
@@ -178,26 +178,26 @@ export default function Home() {
                 star on github
               </a>
             </div>
-            <div className="rounded-lg mt-8 sm:mt-[50px] font-mono text-sm sm:text-lg text-gray-100 overflow-x-auto relative">
-              <div className="absolute top-0 left-[-45px] h-full w-[150px] bg-gradient-to-r from-black to-transparent z-20 hidden sm:block"></div>
+                          <div className="rounded-lg mt-8 sm:mt-[50px] font-mono text-sm sm:text-lg text-gray-100 overflow-x-auto relative">
+                <div className="absolute top-0 left-[-20px] sm:left-[-45px] h-full w-[100px] sm:w-[150px] bg-gradient-to-r from-black to-transparent z-20"></div>
               <div className="space-y-3 min-w-0">
                 <div className="flex min-w-0">
-                  <span className="text-gray-500 mr-2 sm:mr-4 select-none flex-shrink-0">1</span>
+                  <span className="text-gray-500 mr-4 select-none flex-shrink-0">1</span>
                   <div className="min-w-0 overflow-x-auto">
                     <span className="text-gray-500">import</span> <span className="text-gray-500">&#123; RateStar &#125;</span> <span className="text-gray-500">from</span> <span className="text-gray-500">'ratti'</span><span className="text-gray-500">;</span>
                   </div>
                 </div>
                 <div className="flex min-w-0">
-                  <span className="text-gray-500 mr-2 sm:mr-4 select-none flex-shrink-0">2</span>
+                  <span className="text-gray-500 mr-4 select-none flex-shrink-0">2</span>
                   <span className="text-gray-400"></span>
                 </div>
                 <div className="flex min-w-0">
-                  <span className="text-gray-500 mr-2 sm:mr-4 select-none flex-shrink-0">3</span>
+                  <span className="text-gray-500 mr-4 select-none flex-shrink-0">3</span>
                   <span className="text-gray-500">&lt;RateStar</span>
                 </div>
                 <div className="space-y-2">
                   <div className="flex min-w-0">
-                    <span className="text-gray-500 mr-2 sm:mr-4 select-none flex-shrink-0">4</span>
+                    <span className="text-gray-500 mr-4 select-none flex-shrink-0">4</span>
                     <PropLine
                       propName="variant"
                       value={props.variant}
@@ -211,7 +211,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="flex min-w-0">
-                    <span className="text-gray-500 mr-2 sm:mr-4 select-none flex-shrink-0">5</span>
+                    <span className="text-gray-500 mr-4 select-none flex-shrink-0">5</span>
                     <PropLine
                       propName="value"
                       value={props.value}
@@ -222,7 +222,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="flex min-w-0">
-                    <span className="text-gray-500 mr-2 sm:mr-4 select-none flex-shrink-0">6</span>
+                    <span className="text-gray-500 mr-4 select-none flex-shrink-0">6</span>
                     <PropLine
                       propName="maxRating"
                       value={props.maxRating}
@@ -232,7 +232,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="flex min-w-0">
-                    <span className="text-gray-500 mr-2 sm:mr-4 select-none flex-shrink-0">7</span>
+                    <span className="text-gray-500 mr-4 select-none flex-shrink-0">7</span>
                     <PropLine
                       propName="precision"
                       value={props.precision}
@@ -243,7 +243,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="flex min-w-0">
-                    <span className="text-gray-500 mr-2 sm:mr-4 select-none flex-shrink-0">8</span>
+                    <span className="text-gray-500 mr-4 select-none flex-shrink-0">8</span>
                     <PropLine
                       propName="size"
                       value={props.size}
@@ -253,7 +253,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="flex min-w-0">
-                    <span className="text-gray-500 mr-2 sm:mr-4 select-none flex-shrink-0">9</span>
+                    <span className="text-gray-500 mr-4 select-none flex-shrink-0">9</span>
                     <PropLine
                       propName="activeColorsEnabled"
                       value={props.activeColorsEnabled}
@@ -272,7 +272,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex min-w-0">
-                  <span className="text-gray-500 mr-2 sm:mr-4 select-none flex-shrink-0">11</span>
+                  <span className="text-gray-500 mr-4 select-none flex-shrink-0">11</span>
                   <span className="text-gray-500">/&gt;</span>
                 </div>
               </div>
@@ -280,7 +280,7 @@ export default function Home() {
           </div>
 
           <div className="space-y-6 w-full lg:w-auto">
-            <div className="rounded-lg flex items-center justify-center">
+            <div className="rounded-lg flex items-center justify-center w-[400px]">
               <RateStar
                 variant={props.variant}
                 value={props.value}
@@ -294,7 +294,7 @@ export default function Home() {
             </div>
             <div className="text-center">
               <div className="text-lg sm:text-xl text-gray-300">
-                Current value: <span className="text-white font-semibold">{props.value}</span>
+                <span className="text-white font-semibold">{props.value}</span>
               </div>
             </div>
           </div>
