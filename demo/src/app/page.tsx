@@ -191,10 +191,8 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white p-4 sm:p-8">
       <div className="max-w-7xl mx-auto">
-
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center justify-center mt-[5%]">
-          <div className="w-full lg:w-auto">
-              <h2 className="text-xl sm:text-2xl font-semibold text-white mb-2">Ratti <span className="text-gray-400 text-sm">v0.1.4</span></h2>
+        <div className='flex flex-col mt-[5%] mb-[65px] sm:w-[880px] mx-auto'>
+        <h2 className="text-xl sm:text-2xl font-semibold text-white mb-2">Ratti <span className="text-gray-400 text-sm">v0.1.4</span></h2>
               <p className="text-gray-300 mb-6 sm:mb-[25px] max-w-md text-sm sm:text-base">
                 A lightweight, customizable star rating component for React with TypeScript support. 
                 Features multiple variants, precision control, and smooth animations for modern web applications.
@@ -208,7 +206,10 @@ export default function Home() {
                 star on github
               </a>
             </div>
-                          <div className="rounded-md mt-8 sm:mt-[50px] font-mono text-sm sm:text-lg text-gray-100 overflow-x-auto relative">
+        </div>
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-center justify-center ">
+          <div className="w-full lg:w-auto order-2 lg:order-1">
+                          <div className="rounded-md font-mono text-sm sm:text-lg text-gray-100 overflow-x-auto relative">
                 <div className="absolute top-0 left-[-20px] sm:left-[-45px] h-full w-[100px] sm:w-[150px] bg-gradient-to-r from-black to-transparent z-20"></div>
               <div className="space-y-3 min-w-0">
                 <div className="flex min-w-0">
@@ -309,8 +310,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="space-y-6 w-full lg:w-auto">
-            <div className="rounded-md flex items-center justify-center w-[400px]">
+          <div className="space-y-6 w-full lg:w-auto order-1 lg:order-2">
+            <div className="rounded-md flex items-center sm:justify-center w-[400px]">
               <RateStar
                 variant={props.variant}
                 value={props.value}
