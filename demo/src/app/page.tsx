@@ -50,14 +50,18 @@ export default function Home() {
   }) => {
     const handleIncrement = () => {
       if (type === 'number' && max !== undefined && externalValue < max) {
-        const newValue = Math.min(max, externalValue + (step || 1));
+        const stepValue = step || 1;
+        const multiplier = 1 / stepValue;
+        const newValue = Math.min(max, Math.round((externalValue + stepValue) * multiplier) / multiplier);
         onChange(newValue);
       }
     };
 
     const handleDecrement = () => {
       if (type === 'number' && min !== undefined && externalValue > min) {
-        const newValue = Math.max(min, externalValue - (step || 1));
+        const stepValue = step || 1;
+        const multiplier = 1 / stepValue;
+        const newValue = Math.max(min, Math.round((externalValue - stepValue) * multiplier) / multiplier);
         onChange(newValue);
       }
     };
