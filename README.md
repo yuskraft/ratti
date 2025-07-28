@@ -2,6 +2,8 @@
 
 A highly-configurable, accessible star rating component for React applications with TypeScript support.
 
+![Ratti Star Rating Component](demo/public/screen.png)
+
 ## Features
 
 - ⭐ **Flexible Rating System**: Support for 1-15 stars with fractional ratings
@@ -22,26 +24,6 @@ npm install ratti
 yarn add ratti
 # or
 pnpm add ratti
-```
-
-## Quick Start
-
-```tsx
-import { RateStar } from 'ratti';
-
-function App() {
-  const [rating, setRating] = useState(0);
-
-  return (
-    <RateStar
-      maxRating={5}
-      value={rating}
-      onChange={setRating}
-      precision={0.5}
-      activeColorsEnabled
-    />
-  );
-}
 ```
 
 ## Basic Usage
@@ -151,56 +133,6 @@ Stars displayed on square backgrounds.
     "#d62828", // Dark red
     "#f77f00"  // Orange
   ]}
-/>
-```
-
-## Advanced Features
-
-### Custom SVG Icons
-
-```tsx
-<RateStar
-  maxRating={5}
-  defaultValue={3}
-  svgPathD="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
-/>
-```
-
-### Custom Sizes
-
-```tsx
-<RateStar
-  maxRating={5}
-  defaultValue={4}
-  size={48} // 48px stars
-/>
-
-// Or with string values
-<RateStar
-  maxRating={5}
-  defaultValue={4}
-  size="2rem" // 2rem stars
-/>
-```
-
-### Read-only Mode
-
-```tsx
-<RateStar
-  maxRating={5}
-  defaultValue={4.5}
-  readOnly
-  precision={0.5}
-/>
-```
-
-### Disabled State
-
-```tsx
-<RateStar
-  maxRating={5}
-  defaultValue={3}
-  disabled
 />
 ```
 
@@ -315,92 +247,6 @@ The component uses CSS custom properties for easy theming:
   --star-color: #3b82f6;
   --star-hover-color: #60a5fa;
   --star-selected-color: #1d4ed8;
-}
-```
-
-## Examples
-
-### E-commerce Product Rating
-
-```tsx
-function ProductRating({ productId, rating, onRatingChange }) {
-  return (
-    <div className="product-rating">
-      <h3>Rate this product</h3>
-      <RateStar
-        maxRating={5}
-        value={rating}
-        onChange={onRatingChange}
-        precision={0.5}
-        activeColorsEnabled
-        variant="circle"
-        size={32}
-      />
-      <span className="rating-text">
-        {rating.toFixed(1)} out of 5 stars
-      </span>
-    </div>
-  );
-}
-```
-
-### Review Form
-
-```tsx
-function ReviewForm() {
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState('');
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <div className="rating-section">
-        <label>Your Rating:</label>
-        <RateStar
-          maxRating={5}
-          value={rating}
-          onChange={setRating}
-          precision={1}
-          activeColorsEnabled
-          customActiveColors={["#ef4444", "#f59e0b", "#10b981"]}
-        />
-      </div>
-      
-      <textarea
-        value={comment}
-        onChange={(e) => setComment(e.target.value)}
-        placeholder="Write your review..."
-      />
-      
-      <button type="submit" disabled={rating === 0}>
-        Submit Review
-      </button>
-    </form>
-  );
-}
-```
-
-### Display-only Rating
-
-```tsx
-function ProductCard({ product }) {
-  return (
-    <div className="product-card">
-      <img src={product.image} alt={product.name} />
-      <h3>{product.name}</h3>
-      
-      <div className="rating-display">
-        <RateStar
-          maxRating={5}
-          defaultValue={product.averageRating}
-          readOnly
-          precision={0.1}
-          activeColorsEnabled
-          size={16}
-        />
-        <span>({product.reviewCount} reviews)</span>
-      </div>
-    </div>
-  );
 }
 ```
 
