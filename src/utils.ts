@@ -1,9 +1,9 @@
 export const DEFAULT_RATING_COLORS = [
-	"#ef4444",
-	"#f97316",
-	"#eab308",
-	"#84cc16",
-	"#22c55e",
+	"#d32f2f",
+	"#ed6c02",
+	"#ff9800",
+	"#4caf50",
+	"#00a63d",
 ];
 
 export function roundToPrecision(value: number, precision: number): number {
