@@ -192,7 +192,7 @@ export default function Home() {
     <main className="min-h-screen bg-black text-white p-4 sm:p-8">
       <div className="max-w-7xl mx-auto">
         <div className='flex flex-col mt-[5%] mb-[65px] sm:w-[880px] mx-auto'>
-        <h2 className="text-xl sm:text-2xl font-semibold text-white mb-2">Ratti <span className="text-gray-400 text-sm">v1.0.1</span></h2>
+        <h2 className="text-xl sm:text-2xl font-semibold text-white mb-2">Ratti <span className="text-gray-400 text-sm">v1.0.2</span></h2>
               <p className="text-gray-300 mb-6 sm:mb-[25px] max-w-md text-sm sm:text-base">
                 A lightweight, customizable star rating component for React with TypeScript support. 
                 Features multiple variants, precision control, and smooth animations for modern web applications.

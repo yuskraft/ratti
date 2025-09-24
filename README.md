@@ -9,8 +9,8 @@ a highly-configurable, accessible rating component for React applications with T
 
 ## Features
 
-- **Flexible Rating System**: Support for 1-15 stars with fractional ratings
-- **Multiple Variants**: Default, circle, and square background styles
+- **Flexible Rating System**: Support stars with fractional ratings
+- **Multiple Variants**: Default, Circle, and Square background styles
 - **Custom Colors**: Built-in color schemes or custom color arrays
 - **Accessibility**: Full keyboard navigation and ARIA support
 - **Responsive**: Works seamlessly across all device sizes
