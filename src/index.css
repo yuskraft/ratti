@@ -24,8 +24,8 @@
 	--star-active-bg-color: var(--star-selected-color);
 
 	--star-transition: all 0.2s ease;
-	--star-hover-scale: 1.1;
-	--star-active-scale: 0.95;
+	--star-hover-scale: 1;
+	--star-active-scale: 0.98;
 
 	--star-outline: 2px solid var(--star-hover-color);
 	--star-outline-offset: 3px;
