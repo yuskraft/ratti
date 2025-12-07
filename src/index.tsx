@@ -51,13 +51,13 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
       className = "",
       size,
     }: StarRatingProps,
-    ref: ForwardedRef<HTMLDivElement>,
+    ref: ForwardedRef<HTMLDivElement>
   ) => {
     const isControlled = value !== undefined;
     const [internalRating, setInternalRating] = useState(defaultValue);
     const [hoverRating, setHoverRating] = useState(0);
     const [keyboardFocusValue, setKeyboardFocusValue] = useState<number | null>(
-      null,
+      null
     );
     const [usingKeyboard, setUsingKeyboard] = useState(false);
     const hoverSuppressed = useRef(false);
@@ -87,7 +87,7 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
 
     function calculateRating(
       event: React.MouseEvent<HTMLDivElement>,
-      index: number,
+      index: number
     ): number {
       if (!isInteractive) return rating;
       const { left, width } = event.currentTarget.getBoundingClientRect();
@@ -108,10 +108,13 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
 
     function handleClick(
       event: React.MouseEvent<HTMLDivElement>,
-      index: number,
+      index: number
     ) {
       if (!isInteractive) return;
-      const newValue = roundToPrecision(calculateRating(event, index), precision);
+      const newValue = roundToPrecision(
+        calculateRating(event, index),
+        precision
+      );
       if (newValue === rating) {
         setHoverRating(0);
         setKeyboardFocusValue(0);
@@ -127,7 +130,7 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
 
     function handleMouseEnter(
       event: React.MouseEvent<HTMLDivElement>,
-      index: number,
+      index: number
     ) {
       if (!isInteractive || hoverSuppressed.current) return;
       const newValue = calculateRating(event, index);
@@ -137,7 +140,7 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
 
     function handleMouseMove(
       event: React.MouseEvent<HTMLDivElement>,
-      index: number,
+      index: number
     ) {
       if (!isInteractive || hoverSuppressed.current) return;
       const newValue = calculateRating(event, index);
@@ -179,7 +182,10 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
           break;
         case "ArrowLeft":
         case "ArrowDown":
-          newValue = Math.max(0, currentValue > 0 ? currentValue - precision : 0);
+          newValue = Math.max(
+            0,
+            currentValue > 0 ? currentValue - precision : 0
+          );
           break;
         case "Home":
           newValue = 0;
@@ -188,7 +194,7 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
           newValue = maxRating;
           break;
         case "Enter":
-        case "Space": {
+        case " ": {
           event.preventDefault();
           const valueToSet = roundToPrecision(currentValue, precision);
           if (valueToSet !== rating) updateRating(valueToSet);
@@ -212,8 +218,8 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
       hoverRating > 0
         ? hoverRating
         : keyboardFocusValue !== null
-          ? keyboardFocusValue
-          : rating;
+        ? keyboardFocusValue
+        : rating;
 
     const starSize = size
       ? typeof size === "number"
@@ -224,13 +230,17 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
     return (
       <div
         ref={containerRef}
-        className={`star-rating variant-${variant} ${disabled ? "disabled" : ""} ${readOnly ? "readonly" : ""} ${className}`}
+        className={`star-rating variant-${variant} ${
+          disabled ? "disabled" : ""
+        } ${readOnly ? "readonly" : ""} ${className}`}
         role="slider"
         aria-orientation="horizontal"
         aria-valuemin={0}
         aria-valuemax={maxRating}
         aria-valuenow={isInteractive ? rating : undefined}
-        aria-valuetext={`${rating.toFixed(precision === 1 ? 0 : 1)} out of ${maxRating} stars`}
+        aria-valuetext={`${rating.toFixed(
+          precision === 1 ? 0 : 1
+        )} out of ${maxRating} stars`}
         aria-label="StarRating"
         aria-disabled={disabled}
         aria-readonly={readOnly}
@@ -263,13 +273,15 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
             keyboardFocusValue !== null &&
             index === Math.max(0, Math.ceil(keyboardFocusValue) - 1);
 
-          const itemClasses = `star-item ${isCurrentKeyboardFocus && usingKeyboard ? "keyboard-focused" : ""}`;
+          const itemClasses = `star-item ${
+            isCurrentKeyboardFocus && usingKeyboard ? "keyboard-focused" : ""
+          }`;
           const starFillColor = activeColorsEnabled
             ? getColorForRating(
                 displayRating,
                 maxRating,
                 activeColorsEnabled,
-                customActiveColors,
+                customActiveColors
               )
             : undefined;
 
@@ -279,7 +291,7 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
                   displayRating,
                   maxRating,
                   activeColorsEnabled,
-                  customActiveColors,
+                  customActiveColors
                 )
               : "var(--star-bg-selected)";
 
@@ -294,7 +306,9 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
                     "--star-active-bg-color": activeColorForGradient,
                   } as React.CSSProperties
                 }
-                onClick={isInteractive ? (e) => handleClick(e, index) : undefined}
+                onClick={
+                  isInteractive ? (e) => handleClick(e, index) : undefined
+                }
                 onMouseEnter={
                   isInteractive ? (e) => handleMouseEnter(e, index) : undefined
                 }
@@ -304,7 +318,7 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
               >
                 <StarIcon
                   starId={starId}
-                  size={size} 
+                  size={size}
                   fillPercentage={1}
                   forcedColor={"var(--star-icon-on-bg)"}
                   svgPathD={svgPathD}
@@ -338,5 +352,5 @@ export const RateStar = forwardRef<HTMLDivElement, StarRatingProps>(
         })}
       </div>
     );
-  },
+  }
 );

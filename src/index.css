@@ -96,7 +96,7 @@
 	width: calc(var(--star-size) + var(--star-bg-padding, 8px));
 	height: calc(var(--star-size) + var(--star-bg-padding, 8px));
 
-	transition: --fill-stop var(--star-fill-transition-duration, 0.1s);
+	transition: --fill-stop var(--star-fill-transition-duration, 0.1s) ease;
 	--active-bg: var(--star-active-bg-color, var(--star-bg-selected));
 	--inactive-bg: var(--star-bg-default);
 	--fill-stop: calc(var(--star-fill-percentage, 0) * 100%);
